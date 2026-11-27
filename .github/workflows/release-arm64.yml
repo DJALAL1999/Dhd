@@ -54,6 +54,15 @@ jobs:
       - uses: android-actions/setup-android@v3
         with:
           packages: 'platform-tools platforms;android-36 build-tools;36.0.0'
+      - name: Restore pub and Android build caches
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pub-cache
+            ~/.android/build-cache
+          key: tools-${{ runner.os }}-${{ hashFiles('TraderDesk_Android_Project_v1_7_134_190_SOURCE.zip') }}
+          restore-keys: |
+            tools-${{ runner.os }}-
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.47.7'
